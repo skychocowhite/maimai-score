@@ -1,9 +1,10 @@
 from rest_framework import viewsets
 from rest_framework.decorators import action
-from rest_framework.response import Response
 
+import utils.http_request.maimai_status as maimai_status
 from musics.models import MusicModel
 from musics.serializer import MusicSerializer
+from utils.http_request.maimai_response import MaimaiResponse
 
 
 class MusicModelViewSet(viewsets.ModelViewSet):
@@ -15,5 +16,5 @@ class MusicModelViewSet(viewsets.ModelViewSet):
 
     @action(methods=['GET'], detail=False)
     def hello(self, request):
-        return Response({'message': 'hello from music'})
+        return MaimaiResponse(status_code=maimai_status.SUCCESS, data={'message': 'hello from music'})
     pass  # TODO: finish this
